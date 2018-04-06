@@ -1,5 +1,23 @@
 <?php
 
+require 'vendor/autoload.php';
+
+use Elasticsearch\ClientBuilder;
+
+$hosts = [
+    'elasticsearch:9200'
+];
+
+$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+                    ->setHosts($hosts)      // Set the hosts
+                    ->build();              // Build the client object
+
+$apiPrefix = "https://api.vindecoder.eu/2.0";
+$apikey = "7faaef90b983";   // Your API key
+$secretkey = "a3396cb5ac";  // Your secret key
+// $vin = ($_SERVER['VIN']) ? $_SERVER['VIN'] : "WAUZZZ4L0BD004645"; // Requested VIN
+echo "result for VIN: ".$vin;
+
 // get the HTTP method, path and body of the request
 $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -26,13 +44,6 @@ switch ($method) {
     break;
 }
  
-$apiPrefix = "https://api.vindecoder.eu/2.0";
-$apikey = "7faaef90b983";   // Your API key
-$secretkey = "a3396cb5ac";  // Your secret key
-// $vin = ($_SERVER['VIN']) ? $_SERVER['VIN'] : "WAUZZZ4L0BD004645"; // Requested VIN
-echo "result for VIN: ".$vin;
-
-
 if($_SERVER['GET']==1) {
 
   $id = $vin;
@@ -53,5 +64,16 @@ echo "";
 echo print_r($result["decode"]);
 //echo print_r($result,true);
 echo "";
+
+
+$params = [
+    'index' => 'my_index',
+    'type' => 'my_type',
+    'id' => 'my_id',
+    'body' => ['testField' => 'abc']
+];
+
+$response = $client->index($params);
+print_r($response);
 
 ?>
