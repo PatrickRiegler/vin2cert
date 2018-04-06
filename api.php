@@ -67,10 +67,10 @@ echo "";
 
 
 $params = [
-    'index' => 'my_index',
+    'index' => 'vin2cert',
     'type' => 'my_type',
-    'id' => 'my_id',
-    'body' => ['testField' => 'abc']
+    'id' => $vin,
+    'body' => ['response' => "'".$data."'"]
 ];
 
 $response = $client->index($params);

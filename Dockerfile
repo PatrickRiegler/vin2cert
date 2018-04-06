@@ -13,7 +13,6 @@ COPY ./*.json /var/www/html/
 COPY ./*.php /var/www/html/
 RUN chown -R apache:apache /var/www/html
 RUN su apache -c "php composer.phar install --no-dev"
-RUN cat /var/www/html/vendor/autoload.php
 
 #WORKDIR /var/www/html/
 
