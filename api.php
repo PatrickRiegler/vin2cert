@@ -35,6 +35,7 @@ switch ($method) {
   case 'POST':
     echo $method."<br><br>";
     echo print_r($input, true);
+    $vin = $_GET["VIN"];
     break;
   case 'DELETE':
     echo $method."<br><br>";
