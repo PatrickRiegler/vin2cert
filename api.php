@@ -19,7 +19,8 @@ function postResultToElastic($data) {
       'index' => 'vin2cert',
       'type' => 'my_type',
       'id' => $vin,
-      'body' => ['response' => "'".$data."'"]
+      //'timestamp' => strtotime("-3h"),
+      'body' => ['timestamp' => "'".strtotime("now")."'", 'response' => "'".$data."'"]
   ];
 
   $response = $client->index($params);
