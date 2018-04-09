@@ -1,0 +1,17 @@
+---
+version: '3'
+services:
+  vin2cert:
+    image: vin2cert
+    container_name: vin2cert-app
+    ports: ['8080:80']
+    extra_hosts: 
+     - "elasticsearch:${AWSIP}"
+
+#  filebeat:
+#    image: docker.elastic.co/beats/filebeat:${TAG}
+#    container_name: vin2cert-filebeat
+#    # If the host system has logs at "/var/log", mount them at "/mnt/log"
+#    # inside the container, where Filebeat can find them.
+#    volumes: ['/var/lib/docker/containers:/mnt/log:ro']
+
