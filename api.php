@@ -44,6 +44,7 @@ switch ($method) {
   case 'GET':
     echo $method."<br><br>";
     $vin = $_GET["VIN"];
+    if($vin=="") die("no VIN number specified...");
     break;
   case 'PUT':
     echo $method."<br><br>";
