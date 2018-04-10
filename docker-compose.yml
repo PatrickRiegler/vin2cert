@@ -7,6 +7,11 @@ services:
     ports: ['8080:80']
     extra_hosts: 
      - "elasticsearch:${AWSIP}"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${AWSIP}:12201
+        tag: "vin2cert"
 
 #  filebeat:
 #    image: docker.elastic.co/beats/filebeat:${TAG}
