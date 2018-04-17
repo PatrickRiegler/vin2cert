@@ -2,7 +2,10 @@
 version: '3'
 services:
   vin2cert:
-    image: vin2cert
+#    image: vin2cert
+    build:
+      context: ./api
+      dockerfile: Dockerfile
     container_name: vin2cert-app
     ports: ['8080:80']
     extra_hosts: 
