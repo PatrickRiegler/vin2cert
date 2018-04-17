@@ -16,6 +16,21 @@ services:
         gelf-address: udp://${AWSIP}:12201
         tag: "vin2cert"
 
+  websocket:
+#    image: websocket
+    build:
+      context: ./websocket
+      dockerfile: Dockerfile
+    container_name: websocket-app
+    ports: ['1337:1337']
+    extra_hosts: 
+     - "elasticsearch:${AWSIP}"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${AWSIP}:12201
+        tag: "websocket"
+
 #  filebeat:
 #    image: docker.elastic.co/beats/filebeat:${TAG}
 #    container_name: vin2cert-filebeat
