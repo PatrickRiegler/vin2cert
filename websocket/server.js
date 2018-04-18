@@ -6,6 +6,7 @@ ws.on('connection', function(w){
   
   w.on('message', function(msg){
     console.log('message from client');
+    console.log(msg);
   });
 
   w.send('message to client');
