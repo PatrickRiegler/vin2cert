@@ -75,7 +75,7 @@ echo "";
 echo print_r($result["decode"]);
 echo "";
 
-postResultToElastic($data);
+#postResultToElastic($data);
 
 
   $id = $vin;
@@ -88,6 +88,6 @@ echo "";
 echo print_r($result["decode"]);
 echo "";
 
-postResultToElastic($data);
+#postResultToElastic($data);
 
 ?>

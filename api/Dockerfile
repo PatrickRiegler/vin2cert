@@ -13,6 +13,10 @@ COPY ./*.json /var/www/html/
 RUN chown -R apache:apache /var/www/html
 RUN su apache -c "php composer.phar install --no-dev"
 
+RUN a2enmod headers
+
+COPY ./.htaccess /var/www/html/
+
 COPY ./*.php /var/www/html/
 RUN chown -R apache:apache /var/www/html
 
