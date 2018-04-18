@@ -1,6 +1,6 @@
 <?php 
 
-$VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645","WDD2210561A233315");
+$VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645");
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +21,7 @@ $VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645","WDD2210561A233315");
 <script type="text/javascript">
  var WSURL='<?php echo getenv('WSURL'); ?>'
  var WSPORT='<?php echo getenv('WSPORT'); ?>'
+ var APIURL=<?php echo getenv('APIURL'); ?>
 </script>
 
   </head>
@@ -44,7 +45,7 @@ $VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645","WDD2210561A233315");
 <?php
 for($i=0;$i<count($VINS);$i++) {
 ?>
-					 <a class="dropdown-item" href="#"><?=$VINS[$i]?></a>
+					 <a class="dropdown-item" href="#" onClick="startVIN(this.id)" id="<?=$VINS[$i]?>"><?=$VINS[$i]?></a>
 <?php
 }
 ?>
@@ -59,7 +60,7 @@ for($i=0;$i<count($VINS);$i++) {
 					</label>
 					<input type="text" class="form-control" id="vin" size="16" maxlength="16">
 				</div>
-				<button type="submit" class="btn btn-primary">
+				<button type="submit" class="btn btn-primary" onClick="startVIN($('#vin').val());">
 					Start
 				</button>
 			</form>
@@ -139,6 +140,7 @@ for($i=0;$i<count($VINS);$i++) {
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/md5.min.js"></script>
     <script src="js/scripts.js"></script>
   </body>
 </html>
