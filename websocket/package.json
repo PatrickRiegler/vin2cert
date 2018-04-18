@@ -1,10 +1,11 @@
 {
-  "name": "websocket",
+  "name": "websocket-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "websocket": "^1.0.25"
+    "websocket": "^1.0.25",
+    "ws": "^5.1.1"
   },
   "devDependencies": {},
   "scripts": {
