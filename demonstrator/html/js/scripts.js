@@ -1,6 +1,6 @@
 // Empty JS for your own code to be here
 
-var connection = new WebSocket('ws://websocket:1337');
+var connection = new WebSocket('ws://localhost:1337');
 
 connection.onopen = function () {
   
