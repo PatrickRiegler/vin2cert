@@ -1,12 +1,6 @@
-FROM node:latest
+FROM php:7-apache
 
-WORKDIR /usr/src/websocket
+WORKDIR /var/www/html/
 
-COPY package*.json ./
-RUN npm install
+COPY ./html/* /var/www/html/
 
-COPY ./*.js .
-
-EXPOSE 1337 
-
-CMD [ "npm", "start" ]
