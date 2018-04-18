@@ -28,9 +28,9 @@ function startVIN(vin) {
 
   var json = JSON.stringify(vehObj);
 
-  callApi(vin);
-
   connection.send(json);
+
+  callApi(vin);
 
   // clear everything
 
