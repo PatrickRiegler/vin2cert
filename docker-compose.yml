@@ -31,6 +31,22 @@ services:
         gelf-address: udp://${AWSIP}:12201
         tag: "websocket"
 
+  demonstrator:
+#    image: demonstrator
+    build:
+      context: ./demonstrator
+      dockerfile: Dockerfile
+    container_name: demonstrator-app
+    ports: ['8888:80']
+    extra_hosts: 
+     - "elasticsearch:${AWSIP}"
+     - "websocket:${AWSIP}"
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${AWSIP}:12201
+        tag: "demonstrator"
+
 #  filebeat:
 #    image: docker.elastic.co/beats/filebeat:${TAG}
 #    container_name: vin2cert-filebeat
