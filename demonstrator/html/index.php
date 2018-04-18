@@ -1,3 +1,8 @@
+<?php 
+
+$VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645","WDD2210561A233315");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +17,11 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+<script type="text/javascript">
+ var WSURL='<?php echo getenv('WSURL'); ?>'
+ var WSPORT='<?php echo getenv('WSPORT'); ?>'
+</script>
 
   </head>
   <!-- <body style="background-image: url('bg.gif'); background-color: gray; "> -->
@@ -31,8 +41,13 @@
 					Select VIN Number:
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					 <a class="dropdown-item" href="#">Vin1</a>
-					 <a class="dropdown-item" href="#">Vin2</a>
+<?php
+for($i=0;$i<count($VINS);$i++) {
+?>
+					 <a class="dropdown-item" href="#"><?=$VINS[$i]?></a>
+<?php
+}
+?>
 				</div>
 			</div>
 			<br>

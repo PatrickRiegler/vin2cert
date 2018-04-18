@@ -11,9 +11,9 @@ run ()
 }
 
 # set env var:
-#if [ "${AWSIP}" == "" ]; then
+if [ "${AWSIP}" == "" ]; then
 	export AWSIP=$(curl -s checkip.amazonaws.com)
-#fi
+fi
 
 ## remove:
 run "docker-compose -f docker-compose.yml stop"

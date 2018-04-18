@@ -44,9 +44,9 @@ services:
     extra_hosts: 
      - "elasticsearch:${AWSIP}"
      - "websocket:${AWSIP}"
-#    environment:
-#     - WEBSOCKET=websocket
-#     - WEBSOCKETPORT=1337
+    environment:
+     - WSURL=${AWSIP}
+     - WSPORT=1337
     logging:
       driver: gelf
       options:
