@@ -16,6 +16,10 @@ services:
       options:
         gelf-address: udp://${AWSIP}:12201
         tag: "vin2cert"
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     depends_on: ['websocket']
 
 
@@ -33,6 +37,11 @@ services:
       options:
         gelf-address: udp://${AWSIP}:12201
         tag: "websocket"
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
 
   demonstrator:
 #    image: demonstrator
@@ -45,6 +54,7 @@ services:
      - "elasticsearch:${AWSIP}"
      - "websocket:${AWSIP}"
     environment:
+     - APIURL="http://${AWSIP}:8080/api.php"
      - WSURL=${AWSIP}
      - WSPORT=1337
     logging:
@@ -52,6 +62,10 @@ services:
       options:
         gelf-address: udp://${AWSIP}:12201
         tag: "demonstrator"
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
     depends_on: ['websocket']
 
 
