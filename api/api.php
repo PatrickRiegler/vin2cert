@@ -24,7 +24,7 @@ function postResultToElastic($data) {
   ];
 
   $response = $client->index($params);
-  print_r($response);
+  //print_r($response);
 
 }
  
