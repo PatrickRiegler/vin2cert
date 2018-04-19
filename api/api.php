@@ -32,7 +32,7 @@ $apiPrefix = "https://api.vindecoder.eu/2.0";
 $apikey = "7faaef90b983";   // Your API key
 $secretkey = "a3396cb5ac";  // Your secret key
 // $vin = ($_SERVER['VIN']) ? $_SERVER['VIN'] : "WAUZZZ4L0BD004645"; // Requested VIN
-echo "result for VIN: ".$vin;
+// echo "result for VIN: ".$vin;
 
 // get the HTTP method, path and body of the request
 $method = $_SERVER['REQUEST_METHOD'];
@@ -42,20 +42,20 @@ $input = json_decode(file_get_contents('php://input'),true);
 // create SQL based on HTTP method
 switch ($method) {
   case 'GET':
-    echo $method."<br><br>";
+    // echo $method."<br><br>";
     $vin = $_GET["VIN"];
     if($vin=="") die("no VIN number specified...");
     break;
   case 'PUT':
-    echo $method."<br><br>";
+    // echo $method."<br><br>";
     break;
   case 'POST':
-    echo $method."<br><br>";
-    echo print_r($input, true);
+    // echo $method."<br><br>";
+    // echo print_r($input, true);
     $vin = $_GET["VIN"];
     break;
   case 'DELETE':
-    echo $method."<br><br>";
+    // echo $method."<br><br>";
     break;
   default:
     echo "wrong command...";
@@ -71,11 +71,11 @@ switch ($method) {
 
 $result = json_decode($data, true);
 
-echo "";
-echo print_r($result["decode"]);
-echo "";
+// echo "";
+// echo print_r($result["decode"]);
+// echo "";
 
-#postResultToElastic($data);
+// postResultToElastic($data);
 
 
   $id = $vin;
@@ -84,9 +84,11 @@ echo "";
 
 $result = json_decode($data, true);
 
-echo "";
-echo print_r($result["decode"]);
-echo "";
+// echo "";
+// echo print_r($result["decode"]);
+// echo "";
+
+echo $data;
 
 #postResultToElastic($data);
 
