@@ -38,12 +38,20 @@ function startVIN(vin) {
 }
 
 function callApi(vin) {
+    var url = APIURL+'?VIN='+vin;
+    // console.log(url);
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", APIURL+'?VIN='+vin, true);
+
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // console.log(this.responseText);
+        var response = JSON.parse(this.responseText);
+        console.log(response);
+      }
+    };
+    xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
-    var response = JSON.parse(xhttp.responseText);
-    console.log(response);
 
 }
 
