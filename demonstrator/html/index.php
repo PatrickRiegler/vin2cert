@@ -2,6 +2,15 @@
 
 $VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645");
 
+require('vendor/autoload.php');
+
+use WebSocket\Client;
+
+$client = new Client("ws://echo.websocket.org/");
+$client->send("Hello WebSocket.org!");
+
+echo $client->receive(); // Will output 'Hello WebSocket.org!'
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +19,10 @@ $VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 4, from LayoutIt!</title>
+    <title>VIN2Cert (VIN to CertificateID conversion REST Service)</title>
 
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+    <meta name="description" content="Demonstrator for VIN2Cert (VIN ==> CertificateID WebService)">
+    <meta name="author" content="RiPro GmbH">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
