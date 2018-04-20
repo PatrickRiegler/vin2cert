@@ -58,7 +58,7 @@ services:
      - "elasticsearch:${AWSIP}"
      - "websocket:${AWSIP}"
     environment:
-     - APIURL="http://${AWSIP}:8080/api.php"
+     - APIURL="http://${AWSIP}:8080/vin2cert/vin2cert.php"
      - WSURL=${AWSIP}
      - WSPORT=1337
     logging:
