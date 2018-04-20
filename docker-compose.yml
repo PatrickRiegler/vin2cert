@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     container_name: vin2cert-app
     ports: ['8080:80']
+    volumes:
+      - ./api:/var/www/html/vin2cert
     extra_hosts: 
      - "elasticsearch:${AWSIP}"
      - "websocket:${AWSIP}"
@@ -50,6 +52,8 @@ services:
       dockerfile: Dockerfile
     container_name: demonstrator-app
     ports: ['80:80']
+    volumes:
+      - ./demonstrator/html:/var/www/html/demonstrator
     extra_hosts: 
      - "elasticsearch:${AWSIP}"
      - "websocket:${AWSIP}"
