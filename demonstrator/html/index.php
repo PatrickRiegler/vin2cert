@@ -1,15 +1,11 @@
 <?php 
 
+$path = "/var/www/html";
+set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+
 $VINS=array("WDD2210561A233135","WAUZZZ4L0BD004645");
 
 require('vendor/autoload.php');
-
-use WebSocket\Client;
-
-$client = new Client("ws://echo.websocket.org/");
-$client->send("Hello WebSocket.org!");
-
-echo $client->receive(); // Will output 'Hello WebSocket.org!'
 
 ?>
 <!DOCTYPE html>

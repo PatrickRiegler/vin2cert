@@ -16,7 +16,7 @@ RUN su apache -c "curl --silent --show-error https://getcomposer.org/installer |
 
 RUN a2enmod headers
 
-COPY ./.htaccess /var/www/html/
+COPY ./.htaccess /var/www/html/vin2cert
 
 COPY ./*.php /var/www/html/
 RUN chown -R apache:apache /var/www/html/vin2cert

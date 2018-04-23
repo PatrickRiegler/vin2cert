@@ -1,9 +1,23 @@
 <?php
 
+$path = "/var/www/html";
+set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+
 require('vendor/autoload.php');
 
-use WebSocket\Client;
 use Elasticsearch\ClientBuilder;
+use WebSocket\Client;
+
+$client = new Client("ws://websocket:1337/");
+// $client->send("Hello ws!");
+// echo $client->receive(); // Will output 'Hello WebSocket.org!'
+
+function updateWebSocket($md5,$status,$result,$detail) {
+  
+  echo $md5;
+   
+}
+
 
 $hosts = [
     'elasticsearch:9200'
@@ -45,6 +59,7 @@ switch ($method) {
   case 'GET':
     // echo $method."<br><br>";
     $vin = $_GET["VIN"];
+    $md5 = $_GET["ID"];
     if($vin=="") die("no VIN number specified...");
     break;
   case 'PUT':
@@ -71,6 +86,7 @@ switch ($method) {
   $data = file_get_contents("{$apiPrefix}/{$apikey}/{$controlsum}/decode/info/{$vin}.json", false);
 
 $result = json_decode($data, true);
+updateWebSocket($md5,"status1","success","data");
 
 // echo "";
 // echo print_r($result["decode"]);

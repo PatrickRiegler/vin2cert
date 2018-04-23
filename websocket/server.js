@@ -5,14 +5,14 @@ var ws = new Server({port: port});
 ws.on('connection', function(w){
   
   w.on('message', function(msg){
-    console.log('message from client');
+    // console.log('message from client');
     console.log(msg);
   });
 
   w.send('message to client');
   
   w.on('close', function() {
-    console.log('closing connection');
+    // console.log('closing connection');
   });
 
 });
