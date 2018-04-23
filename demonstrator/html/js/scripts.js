@@ -29,7 +29,7 @@ function startVIN(vin) {
 
   var json = JSON.stringify(vehObj);
 
-  connection.send(json);
+  //connection.send(json);
 
   callApi(vin,hash);
 
