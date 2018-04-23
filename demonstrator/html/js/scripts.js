@@ -80,6 +80,8 @@ function startVIN(vin) {
 
   callApi(vin,hash);
 
+  $(".clone").remove();
+
   // clear everything
 
   // start to build the 
