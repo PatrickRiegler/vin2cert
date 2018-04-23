@@ -16,6 +16,7 @@ RUN chown -R apache:apache /var/www/html
 RUN su apache -c "curl --silent --show-error https://getcomposer.org/installer | php" && \
 	su apache -c "php composer.phar install"
 
+COPY *.ico /var/www/html/
 COPY ./html /var/www/html/demonstrator
 
 RUN chown -R apache:apache /var/www/html
