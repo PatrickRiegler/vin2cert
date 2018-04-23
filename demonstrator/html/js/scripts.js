@@ -13,7 +13,8 @@ connection.onerror = function (error) {
 
 // Log messages from the server
 connection.onmessage = function (e) {
-    console.log('message from server', e.data);
+    //console.log('message from server: ', e.data);
+    console.log(e.data);
 };
 
 
@@ -30,15 +31,15 @@ function startVIN(vin) {
 
   connection.send(json);
 
-  callApi(vin);
+  callApi(vin,hash);
 
   // clear everything
 
   // start to build the 
 }
 
-function callApi(vin) {
-    var url = APIURL+'?VIN='+vin;
+function callApi(vin,hash) {
+    var url = APIURL+'?VIN='+vin+'&ID='+hash;
     // console.log(url);
     var xhttp = new XMLHttpRequest();
 
@@ -46,7 +47,7 @@ function callApi(vin) {
       if (this.readyState == 4 && this.status == 200) {
         // console.log(this.responseText);
         var response = JSON.parse(this.responseText);
-        console.log(response);
+        // console.log(response);
       }
     };
     xhttp.open("GET", url, true);
@@ -54,4 +55,6 @@ function callApi(vin) {
     xhttp.send();
 
 }
+
+
 
