@@ -75,7 +75,7 @@ for($i=0;$i<count($VINS);$i++) {
 	<div class="row">
 		<div class="col-md-12">
 			<div id="card-404583">
-				<div class="card">
+				<div class="card d-none template">
 					<div class="card-header">
 						 <a class="card-link" data-toggle="collapse" data-parent="#card-404583" href="#card-element-748509">
 						 	<table border="0" width="100%">
@@ -91,45 +91,14 @@ for($i=0;$i<count($VINS);$i++) {
 							</table>
 						 </a>
 					</div>
-					<div id="card-element-748509" class="collapse show">
+					<div id="card-element-748509" class="collapse hide">
 						<div class="card-block">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-6 result-left">
 										Links
 									</div>
-									<div class="col-md-6">
-										Rechts
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-header">
-						 <a class="collapsed card-link" data-toggle="collapse" data-parent="#card-404583" href="#card-element-111918">
-						 	<table width="100%">
-							  <tbody>
-								<tr>
-								  <td>ID</td>
-								  <td>VIN</td>
-								  <td>Step</td>
-								  <td>Step&nbsp;Detail</td>
-								  <td>Status</td>
-								</tr>
-							  </tbody>
-							</table>
-						 </a>
-					</div>
-					<div id="card-element-111918" class="collapse">
-						<div class="card-block">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-6">
-										Links
-									</div>
-									<div class="col-md-6">
+									<div class="col-md-6 result-right">
 										Rechts
 									</div>
 								</div>

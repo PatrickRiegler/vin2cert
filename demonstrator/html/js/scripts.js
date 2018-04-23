@@ -11,10 +11,57 @@ connection.onerror = function (error) {
   console.error('WebSocket Error ' + error);
 };
 
+function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+         json = JSON.stringify(json, undefined, 2);
+    }
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+
 // Log messages from the server
 connection.onmessage = function (e) {
     //console.log('message from server: ', e.data);
     console.log(e.data);
+    var json = JSON.parse(e.data);
+    //console.log(json.id);
+    var rid=json.id+'-'+json.step+'-'+json.stepDetail;
+    $(".template").clone().attr('id',rid).addClass('clone').insertBefore('.template');
+    $(".clone").removeClass("template").removeClass("d-none");
+    //console.log($(".template"));
+    //console.log($(".clone"));
+    //console.log(rid);
+    $("#"+rid).children('div').last().attr('id','ce'+rid);
+    $("#"+rid).find('a').attr('href','#ce'+rid);
+    $("#"+rid).find('tbody tr td').each(function(i,v) {
+      var val = "";
+      switch(i) {
+          case 0: val = json.id; break;
+          case 1: val = json.vin; break;
+          case 2: val = json.step; break;
+          case 3: val = json.stepDetail; break;
+          case 4: val = json.result; break;
+          default: val = "not found";
+      }
+      $(this).html(val);
+    });
+    $("#"+rid).find('.result-left').html(syntaxHighlight(json));
+    //$("#"+rid).find('.result-right').html('will show more details later');
+    $("#"+rid).find('.result-right').html('<xmp>'+JSON.stringify(json, undefined, 2)+'</xmp>');
 };
 
 
