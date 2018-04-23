@@ -35,6 +35,8 @@ services:
       dockerfile: Dockerfile
     container_name: websocket-app
     ports: ['1337:1337']
+    volumes:
+      - ./websocket:/usr/src/websocket
     extra_hosts: 
      - "elasticsearch:${AWSIP}"
     logging:

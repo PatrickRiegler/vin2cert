@@ -1,5 +1,7 @@
 FROM php:7-apache
 
+#WORKDIR /var/www/html/
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git zip unzip
 
@@ -21,5 +23,4 @@ COPY ./.htaccess /var/www/html/vin2cert
 COPY ./*.php /var/www/html/
 RUN chown -R apache:apache /var/www/html/vin2cert
 
-#WORKDIR /var/www/html/
 
