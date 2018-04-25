@@ -1,6 +1,7 @@
 // Empty JS for your own code to be here
 
 var connection = new WebSocket('ws://'+WSURL+':'+WSPORT);
+var hash = "";
 
 connection.onopen = function () {
   
@@ -10,6 +11,18 @@ connection.onopen = function () {
 connection.onerror = function (error) {
   console.error('WebSocket Error ' + error);
 };
+
+$.fn.removeClassRegex = function(regex) {
+  return $(this).removeClass(function(index, classes) {
+    return classes.split(/\s+/).filter(function(c) {
+      return regex.test(c);
+    }).join(' ');
+  });
+};
+
+$(document).ready(function () {
+    $('.code-box-copy').codeBoxCopy();
+});
 
 function syntaxHighlight(json) {
     if (typeof json != 'string') {
@@ -38,10 +51,17 @@ connection.onmessage = function (e) {
     //console.log('message from server: ', e.data);
     console.log(e.data);
     var json = JSON.parse(e.data);
-    //console.log(json.id);
+    // console.log(json.id);
+    // console.log(hash);
+    if(json.id!=hash) return true;
     var rid=json.id+'-'+json.step+'-'+json.stepDetail;
     $(".template").clone().attr('id',rid).addClass('clone').insertBefore('.template');
     $(".clone").removeClass("template").removeClass("d-none");
+
+    // update progress on statusbar
+    if(json.step=="vindecode") $("#statusbar").animate({'width':'25%'},200).removeClassRegex(/^bg-/).addClass("bg-warning");
+    //if(json.step=="vindecode") $("#statusbar").animate({'width':'100%'},200).removeClassRegex(/^bg-/).addClass("bg-success");
+
     //console.log($(".template"));
     //console.log($(".clone"));
     //console.log(rid);
@@ -68,7 +88,7 @@ connection.onmessage = function (e) {
 function startVIN(vin) {
   $('#vin').val(vin);
 
-  var hash = md5(vin+Date.now());
+  hash = md5(vin+Date.now());
 
   var vehObj = {};
   vehObj["id"] = hash;
@@ -79,8 +99,9 @@ function startVIN(vin) {
   //connection.send(json);
 
   callApi(vin,hash);
-
+  
   $(".clone").remove();
+  $(".progress").removeClass("d-none");
 
   // clear everything
 

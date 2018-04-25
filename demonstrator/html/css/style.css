@@ -1,4 +1,4 @@
-# Empty CSS file for your own CSS
+input#vin { width: 400px; }
 
 pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
 .string { color: green; }

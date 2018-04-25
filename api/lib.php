@@ -62,7 +62,7 @@ function postResultToElastic($md5,$vin,$step,$stepDetail,$result,$detail) {
 		'step' => "'".$step."'",
 		'stepDetail' => "'".$stepDetail."'",
 		'result' => "'".$result."'",
-		'detail' => "'".$detail."'"
+		'detail' => "'".json_encode($detail)."'"
 		]
   ];
   $response = $client->index($params);
