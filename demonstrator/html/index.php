@@ -29,6 +29,7 @@ require('vendor/autoload.php');
  var APIURL=<?php echo getenv('APIURL'); ?>
 </script>
 
+    <link href="css/code-box-copy.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
   </head>
@@ -101,10 +102,11 @@ for($i=0;$i<count($VINS);$i++) {
 						<div class="card-block">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-md-6 result-left">
+									<div class="col-md-6 result-left code-box-copy">
 										Links
 									</div>
-									<div class="col-md-6 result-right">
+<button class="code-box-copy__btn" data-clipboard-target="#example-html" title="Copy"></button>
+									<div class="col-md-6 result-right code-box-copy">
 										Rechts
 									</div>
 								</div>
@@ -123,8 +125,9 @@ for($i=0;$i<count($VINS);$i++) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <script src="js/debugbar.js"></script>
+    <script src="js/code-box-copy.js"></script>
     <script src="js/scripts.js"></script>
   </body>
 </html>

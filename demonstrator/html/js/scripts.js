@@ -81,7 +81,7 @@ connection.onmessage = function (e) {
     });
     $("#"+rid).find('.result-left').html(syntaxHighlight(json));
     //$("#"+rid).find('.result-right').html('will show more details later');
-    $("#"+rid).find('.result-right').html('<xmp>'+JSON.stringify(json, undefined, 2)+'</xmp>');
+    $("#"+rid).find('.result-right').html('<button class="code-box-copy__btn" data-clipboard-target="#'+json.id+'-right-json" title="Copy"></button><pre><code class="language-javascript" id="'+json.id+'-right-json">'+JSON.stringify(json, undefined, 2)+'</code></pre>');
 };
 
 
