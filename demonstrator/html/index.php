@@ -36,8 +36,15 @@ require('vendor/autoload.php');
   <!-- <body style="background-image: url('bg.gif'); background-color: gray; "> -->
   <body style="background-color: gray; ">
 
-  <div style="width:80%; margin-left: 5%; margin-top: 1%; border: 1px solid silver; padding: 20px; border-radius: 25px; background-color: silver; opacity: 0.95;">
-    <div class="container-fluid" style="opacity: 1;">
+    <div id="fullScreenDiv">
+        <div id="videoDiv">           
+            <video preload="preload" id="video" autoplay="autoplay" loop="loop" muted>
+            <source src="mp4/cars.mp4" type="video/mp4"></source>
+            </video> 
+        </div>
+  <div class="mdiv">
+  <div class="row">
+    <div class="col-md-4 cbox">
 	<div class="row">
 		<div class="col-md-12">
 			<div>
@@ -74,7 +81,17 @@ for($i=0;$i<count($VINS);$i++) {
 			</form>
 		</div>
 	</div>
+    </div>
+    <div class="col-md-4">
+	&nbsp;
+    </div>
+    <div class="col-md-4 cbox cbox-right d-none">
+	<div id="crid">ID:</div>
+	<div id="crvin">VIN:</div>
+    </div>
+  </div>
 	<br><br>
+  <div class="cdiv d-none">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="progress d-none">
@@ -85,17 +102,12 @@ for($i=0;$i<count($VINS);$i++) {
 				<div class="card d-none template">
 					<div class="card-header">
 						 <a class="card-link" data-toggle="collapse" data-parent="#card-404583" href="#card-element-748509">
-						 	<table class="w-100">
-							  <tbody>
-								<tr>
-								  <td>ID</td>
-								  <td>VIN</td>
-								  <td>Step</td>
-								  <td>Step&nbsp;Detail</td>
-								  <td>Status</td>
-								</tr>
-							  </tbody>
-							</table>
+							<div class="row tbody">
+								<div class="col-md-3">Step</div>
+								<div class="col-md-3">StepDetail</div>
+								<div class="col-md-3">Status</div>
+								<div class="col-md-3">Response Time</div>
+							</div>
 						 </a>
 					</div>
 					<div id="card-element-748509" class="collapse hide">
@@ -117,6 +129,7 @@ for($i=0;$i<count($VINS);$i++) {
 			</div>
 		</div>
 	</div>
+    </div>
     </div>
   </div>
 

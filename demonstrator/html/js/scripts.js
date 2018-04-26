@@ -67,17 +67,16 @@ connection.onmessage = function (e) {
     //console.log(rid);
     $("#"+rid).children('div').last().attr('id','ce'+rid);
     $("#"+rid).find('a').attr('href','#ce'+rid);
-    $("#"+rid).find('tbody tr td').each(function(i,v) {
+    $("#"+rid).find('.tbody div').each(function(i,v) {
       var val = "";
       switch(i) {
-          case 0: val = json.id; break;
-          case 1: val = json.vin; break;
-          case 2: val = json.step; break;
-          case 3: val = json.stepDetail; break;
-          case 4: val = json.result; break;
+          case 0: val = json.step; break;
+          case 1: val = json.stepDetail; break;
+          case 2: val = json.result; break;
+          case 3: val = Math.round(eval(json.responseTime*1000))+" ms"; break;
           default: val = "not found";
       }
-      $(this).html(val);
+      $(this).html(val); 
     });
     $("#"+rid).find('.result-left').html(syntaxHighlight(json));
     //$("#"+rid).find('.result-right').html('will show more details later');
@@ -100,6 +99,10 @@ function startVIN(vin) {
 
   callApi(vin,hash);
   
+  $(".cdiv").removeClass("d-none");
+  $(".cbox-right").removeClass("d-none");
+  $(".cbox-right #crid").html("ID: "+hash);
+  $(".cbox-right #crvin").html("VIN: "+vin);
   $(".clone").remove();
   $(".progress").removeClass("d-none");
 
