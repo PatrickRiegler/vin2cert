@@ -48,7 +48,7 @@ function notImplemented($method) {
     exit(500);
 }
 
-function postResultToElastic($md5,$vin,$step,$stepDetail,$result,$detail) {
+function postResultToElastic($md5,$vin,$step,$stepDetail,$result,$responseTime,$detail) {
   global $client;
   $params = [
       'index' => 'vin2cert',
@@ -62,6 +62,7 @@ function postResultToElastic($md5,$vin,$step,$stepDetail,$result,$detail) {
 		'step' => "'".$step."'",
 		'stepDetail' => "'".$stepDetail."'",
 		'result' => "'".$result."'",
+		'responseTime' => "'".$responseTime."'",
 		'detail' => "'".json_encode($detail)."'"
 		]
   ];
@@ -69,7 +70,7 @@ function postResultToElastic($md5,$vin,$step,$stepDetail,$result,$detail) {
   //print_r($response);
 }
 
-function updateWebSocket($md5,$vin,$step,$stepDetail,$result,$detail) {
+function updateWebSocket($md5,$vin,$step,$stepDetail,$result,$responseTime,$detail) {
   global $wsclient;
   // echo "$md5,$status,$result,$detail";
   $arr = array(
@@ -78,15 +79,16 @@ function updateWebSocket($md5,$vin,$step,$stepDetail,$result,$detail) {
 	'step' => $step, 
 	'stepDetail' => $stepDetail, 
 	'result' => $result, 
+	'responseTime' => $responseTime, 
 	'detail' => $detail
       );
   $wsclient->send(json_encode($arr));
 }
 
-function handleResult($md5,$vin,$step,$stepDetail,$result,$detail) {
+function handleResult($md5,$vin,$step,$stepDetail,$result,$responseTime,$detail) {
   // echo $step." - ".$stepDetail;
-  updateWebSocket($md5,$vin,$step,$stepDetail,$result,$detail);
-  postResultToElastic($md5,$vin,$step,$stepDetail,$result,$detail);
+  updateWebSocket($md5,$vin,$step,$stepDetail,$result,$responseTime,$detail);
+  postResultToElastic($md5,$vin,$step,$stepDetail,$result,$responseTime,$detail);
 
 }
 
