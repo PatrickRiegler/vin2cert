@@ -66,7 +66,11 @@ function postResultToElastic($md5,$vin,$step,$stepDetail,$result,$responseTime,$
 		'detail' => "'".json_encode($detail)."'"
 		]
   ];
-  $response = $client->index($params);
+  try {
+    $response = $client->index($params);
+  } catch (Exception $e) {
+    //echo "connection to Elastic host not successful";
+  }
   //print_r($response);
 }
 
