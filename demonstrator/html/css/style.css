@@ -52,6 +52,9 @@ pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
     background-color: gray;
     position: relative;
 }
+#videodiv{    
+    background-color: white;
+}
 #video{    
     width: 100vw; 
     height: auto;
