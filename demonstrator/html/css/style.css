@@ -1,4 +1,4 @@
-input#vin { width: 350px; }
+input#vin { width: 80%; }
 
 div.mdiv {
   width:100%; 
@@ -21,16 +21,15 @@ div.cbox, div.cdiv {
   #opacity: 0.95;
 }
 div.cbox { 
-  width:25%; 
-  flex: 0;
+  flex: 1;
   margin-top:50px;
+  max-width: 25%;
 }
 div.cdiv { 
   width:90%; 
 }
 div.cbox-right { 
-  flex: inherit;
-  margin-left: 10%; 
+  max-width: 25%;
 }
 
 pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
