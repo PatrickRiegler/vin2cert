@@ -20,7 +20,7 @@ RUN a2enmod headers
 
 COPY ./.htaccess /var/www/html/vin2cert
 
-COPY ./*.php /var/www/html/
+COPY ./*.php /var/www/html/vin2cert
 RUN chown -R apache:apache /var/www/html/vin2cert
 
 
