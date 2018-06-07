@@ -30,7 +30,7 @@ $client = ClientBuilder::create()           // Instantiate a new ClientBuilder
                     ->build();              // Build the client object
 
 // build websocket client
-$wsclient = new Client("ws://websocket:1337/");
+$wsclient = new Client("ws://192.168.1.105:1337/");
 // $wsclient->send("Hello ws!");
 // echo $wsclient->receive(); // Will output 'Hello WebSocket.org!'
 

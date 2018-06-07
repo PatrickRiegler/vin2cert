@@ -8,8 +8,8 @@ services:
       dockerfile: Dockerfile
     container_name: vin2cert-app
     ports: ['8080:80']
-#    volumes:
-#      - ./vin2cert:/var/www/html/vin2cert
+    volumes:
+      - ./api:/var/www/html/vin2cert
     extra_hosts: 
      - "elasticsearch:${AWSIP}"
      - "websocket:${AWSIP}"
