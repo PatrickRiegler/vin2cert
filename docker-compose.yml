@@ -43,8 +43,8 @@ services:
     environment:
      - WSURL=${AWSIP}
      - WSPORT=1337
-     - AWS_ACCESS_KEY_ID=AKIAICE4JY4RBPHKOXWQ
-     - AWS_SECRET_ACCESS_KEY=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
+     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
     logging:
       driver: gelf
       options:
