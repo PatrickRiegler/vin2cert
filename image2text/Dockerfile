@@ -2,6 +2,9 @@ FROM php:7-apache
 
 #WORKDIR /var/www/html/
 
+ENV AWS_ACCESS_KEY_ID=AKIAICE4JY4RBPHKOXWQ
+ENV AWS_SECRET_ACCESS_KEY=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
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git zip unzip
 

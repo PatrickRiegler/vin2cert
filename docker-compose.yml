@@ -28,6 +28,33 @@ services:
     depends_on: ['websocket']
 
 
+  image2text:
+    image: patrickriegler/vin2cert_image2text
+    build:
+      context: ./image2text
+      dockerfile: Dockerfile
+    container_name: image2text-app
+    ports: ['8090:80']
+    volumes:
+      - ./image2text:/var/www/html/image2text
+    extra_hosts: 
+     - "elasticsearch:${AWSIP}"
+     - "websocket:${AWSIP}"
+    environment:
+     - WSURL=${AWSIP}
+     - WSPORT=1337
+     - AWS_ACCESS_KEY_ID=AKIAICE4JY4RBPHKOXWQ
+     - AWS_SECRET_ACCESS_KEY=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
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${AWSIP}:12201
+        tag: "image2text"
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
   websocket:
     image: patrickriegler/vin2cert_websocket
     build:

@@ -1,17 +1,24 @@
 <?php
+
+// extend path for including composer frameworks
+$path = "/var/www/html";
+set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+
     require 'vendor/autoload.php';
 
     use Aws\Rekognition\RekognitionClient;
 
     $options = [
-       'region'            => 'us-west-2',
+       'region'            => 'eu-west-1',
         'version'           => 'latest'
     ];
 
     $rekognition = new RekognitionClient($options);
 	
     #Get local image
-    $photo = 'input.jpg';
+    // $photo = 'fzausweissharan.png';
+    $photo = 'fzausweisviano.png';
+    // $photo = 'sz-nummer-r8.jpg';
     $fp_image = fopen($photo, 'r');
     $image = fread($fp_image, filesize($photo));
     fclose($fp_image);
@@ -26,8 +33,8 @@
        )
     );
 
-    print_r($result);
-    var_dumb($result);
+    echo $result;
+    // print_r($result);
 
 /*
     # Display info for each detected person
