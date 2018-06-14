@@ -105,6 +105,42 @@ services:
     depends_on: ['websocket']
 
 
+  quote:
+    image: patrickriegler/vin2cert_quote
+    build:
+      context: ./quote
+      dockerfile: Dockerfile
+    container_name: quote-app
+    ports: ['8091:80']
+    volumes:
+      - ./quote/quote:/var/www/html/quote
+    extra_hosts: 
+     - "elasticsearch:${AWSIP}"
+     - "websocket:${AWSIP}"
+    environment:
+     - APIURL="http://${AWSIP}:8080/vin2cert/vin2cert.php"
+     - WSURL=${AWSIP}
+     - WSPORT=1337
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${AWSIP}:12201
+        tag: "quote"
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on: ['websocket']
+
+
+#  filebeat:
+#    image: docker.elastic.co/beats/filebeat:${TAG}
+#    container_name: vin2cert-filebeat
+#    # If the host system has logs at "/var/log", mount them at "/mnt/log"
+#    # inside the container, where Filebeat can find them.
+#    volumes: ['/var/lib/docker/containers:/mnt/log:ro']
+
+
 #  filebeat:
 #    image: docker.elastic.co/beats/filebeat:${TAG}
 #    container_name: vin2cert-filebeat
